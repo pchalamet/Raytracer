@@ -1,0 +1,46 @@
+camera { position <0, 0, -64>
+	 width 128
+	 height 80 }
+
+%%
+
+
+lamp { position <10, -10, -5>
+       intensity 10 }
+
+lamp { position <-5, 0, -15>
+       intensity 40 }
+
+lamp { position <10, -90, 40>
+       intensity 20 }
+
+lamp { position <-600, -5, 200>
+       intensity 200 }
+
+%%
+
+
+sphere { scale <55, 55, 55>
+ 	 translation <-20, -15, 80>
+
+	 diffuse [0.6, 0.1, 0.1]
+	 specular [0, 0, 0]
+	 reflect [1, 1, 1]
+	 aspect 2.0 }
+
+
+sphere { scale <50, 50, 50>
+ 	 translation <50, 5, 40>
+
+	 diffuse [0.0, 0.3, 1]
+	 specular [.4,.4,.4]
+	 reflect [1,1,1]
+	 aspect 3.0 }
+
+
+plane { translation <0, 30, 0>
+
+	diffuse [0.5,0.3,0]
+	specular [0.5, 0.2, 0.2]
+	aspect 4.0
+	tile 50 }

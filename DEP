@@ -1,0 +1,2 @@
+csg.o: csg.c csg.h property.h vecteur.h
+image.o: image.c image.h

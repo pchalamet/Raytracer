@@ -1,0 +1,60 @@
+CC = gcc
+CFLAGS = -Wall -O5 -ffast-math -m586 -funroll-loops
+
+LD = gcc
+LDFLAGS =
+LIB = -lm
+
+FLEX = flex
+FFLAGS =
+
+BISON = bison
+BFLAGS = -d
+
+OBJ = main.o scan_tab.o lexyy.o scene.o csg.o segment.o raytrace.o primitive.o \
+      image.o vecteur.o pool.o
+
+OUT = raytrace
+
+
+
+
+all: dep $(OUT)
+
+
+$(OUT): $(OBJ)
+	$(LD) $(LDFLAGS) $(OBJ) -o $(OUT) $(LIB)
+
+
+clean:
+	del *.o
+	del dep
+	del lexyy.c
+	del scan_tab.c
+	del $(OUT).exe
+
+
+
+#
+# dependences
+#
+depends: dep
+
+
+dep:
+	$(BISON) $(BFLAGS) scan.y
+	$(FLEX) $(FFLAGS) scan.l
+	del dep
+	$(CC) -MM *.c >dep
+
+
+scan_tab.c: scan.y
+	$(BISON) $(BFLAGS) scan.y
+
+lexyy.c: scan.l
+	$(FLEX) $(FFLAGS) scan.l
+
+
+ifeq (dep,$(wildcard dep))
+include dep
+endif
